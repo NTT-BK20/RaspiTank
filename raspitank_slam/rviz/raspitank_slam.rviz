@@ -62,15 +62,11 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         base_footprint:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        chassis_link:
+        base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -122,11 +118,9 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        base_link:
-          Value: false
         base_footprint:
           Value: false
-        chassis_link:
+        base_link:
           Value: false
         camera_link:
           Value: false

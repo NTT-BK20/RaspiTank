@@ -58,19 +58,14 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         base_footprint:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        chassis_link:
+        base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
         camera_link:
           Alpha: 1
           Show Axes: false
@@ -118,28 +113,26 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        base_link:
-          Value: true
         base_footprint:
           Value: false
-        chassis_link:
+        base_link:
           Value: false
         camera_link:
           Value: false
         camera_link_optical:
-          Value: true
+          Value: false
+        caster_wheel:
+          Value: false
         imu_link:
+          Value: false
+        left_wheel:
           Value: false
         lidar_link:
           Value: false
-        left_wheel:
-          Value: true
-        right_wheel:
-          Value: true
         odom:
           Value: false
-        caster_wheel:
-          Value: true
+        right_wheel:
+          Value: false
       Marker Scale: 1
       Name: TF
       Show Arrows: false
@@ -147,9 +140,8 @@ Visualization Manager:
       Show Names: false
       Tree:
         odom:
-          base_link:
           base_footprint:
-            chassis_link:
+            base_link:
               camera_link:
                 camera_link_optical: {}
               imu_link: {}

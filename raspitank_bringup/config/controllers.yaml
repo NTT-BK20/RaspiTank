@@ -15,7 +15,7 @@ diff_controller:
   ros__parameters:
     publish_rate: 50.0 # Has to be a double otherwise errors are encountered
 
-    base_frame_id: base_link
+    base_frame_id: base_footprint
 
     # left_wheel_names: ["left_back_wheel_joint", "left_front_wheel_joint"]
     # right_wheel_names: ["right_back_wheel_joint", "right_front_wheel_joint"]
