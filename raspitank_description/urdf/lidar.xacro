@@ -1,6 +1,12 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">raspitank_description
 
+    <joint name="lidar_joint" type="fixed">
+        <origin xyz="0.004 0.0 0.122" rpy="0 0 ${pi}"/>
+        <parent link="base_link"/>
+        <child link="lidar_link"/>
+    </joint>
+
     <link name="lidar_link">
         <visual>
             <origin xyz="-0.004 0.0 -0.122" rpy="0 0 ${pi}"/>
@@ -19,12 +25,6 @@
             <origin xyz="0 0 0.05" rpy="0 0 0"/>
         </xacro:cylinder_inertia>
     </link>
-
-    <joint name="lidar_joint" type="fixed">
-        <origin xyz="0.004 0.0 0.122" rpy="0 0 ${pi}"/>
-        <parent link="base_link"/>
-        <child link="lidar_link"/>
-    </joint>
 
     <gazebo reference="lidar_link">
         <material>Gazebo/Blue</material>

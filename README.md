@@ -1,20 +1,18 @@
 # raspitank
 
-![ROS2 CI](https://github.com/TheNoobInventor/raspitank/actions/workflows/.github/workflows/raspitank_ci_action.yml/badge.svg)
+![ROS2 CI](https://github.com/NTT-BK20/RaspiTank/actions/workflows/.github/workflows/raspitank_ci_action.yml/badge.svg)
+
+<p align='center'>
+    <img src=img/raspitank.img width="600">
+</p>
 
 A differential drive robot is controlled using ROS2 Humble running on a Raspberry Pi 4 (running Ubuntu server 22.04). The vehicle is equipped with a Raspberry Pi camera for visual feedback and an RPlidar A1 sensor used for Simultaneous Localization and Mapping (SLAM), autonomous navigation and obstacle avoidance. Additionally, an MPU6050 inertial measurement unit (IMU) is employed by the `robot_localization` package on the robot, to fuse IMU sensor data and the wheel encoders data, using an Extended Kalman Filter (EKF) node, to provide more accurate robot odometry estimates.
 
 Hardware components are written for the Waveshare Motor Driver HAT and MPU6050 sensor to be accessed by the `ros2_control` differential drive controller and Imu sensor broadcaster respectively, via the `ros2_control` resource manager.
 
-<p align='center'>
-    <img src=docs/images/real_mapping.gif width="600">
-</p>
-
-🚧 **_(Work in Progress)_**
-
 ## 🗃️ Package Overview
 
-- [`raspitank_base`](./raspitank_base/) : Contains the ROS2 control hardware component for the raspitank with low-level code for the Waveshare Motor Driver HAT.
+- [`raspitank_base`](./raspitank_base/) : Contains the ROS2 control hardware component for the raspitank with low-level code for the Arduino Nano.
 - [`raspitank_bringup`](./raspitank_bringup/) : Contains hardware component for the MPU6050 module, launch files to bring up the camera, lidar and the real raspitank.
 - [`raspitank_description`](./raspitank_description/) : Contains the URDF description files for raspitank, sensors and `ros2 control`.
 - [`raspitank_gazebo`](./raspitank_gazebo/) : Contains configuration, launch and world files needed to simulate raspitank in Gazebo.
@@ -28,33 +26,22 @@ Hardware components are written for the Waveshare Motor Driver HAT and MPU6050 s
 
 The following components were used in this project:
 
-|     | Part                                                                                                                                                                                                                                                                                  |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | Raspberry Pi 4 (4 GB)                                                                                                                                                                                                                                                                 |
-| 2   | SanDisk 32 GB SD Card (minimum)                                                                                                                                                                                                                                                       |
-| 3   | [Two wheel drive robot chassis kit (with wheel encoders)](https://www.amazon.com/perseids-Chassis-Encoder-Wheels-Battery/dp/B07DNYQ3PX/ref=sr_1_9?crid=3T8FVRRMPFCIX&keywords=two+wheeled+drive+robot+chassis&qid=1674141374&sprefix=two+wheeled+drive+robot+chas%2Caps%2C397&sr=8-9) |
-| 4   | [Waveshare Motor Driver HAT](https://www.waveshare.com/wiki/Motor_Driver_HAT)                                                                                                                                                                                                         |
-| 5   | [2 x Photo interrupters for wheel encoders](https://s.click.aliexpress.com/e/_DdivGob)                                                                                                                                                                                                |
-| 6   | MPU6050 board                                                                                                                                                                                                                                                                         |
-| 7   | [RPlidar A1](https://s.click.aliexpress.com/e/_DdPdRS7)                                                                                                                                                                                                                               |
-| 8   | Raspberry Pi camera v1.3                                                                                                                                                                                                                                                              |
-| 9   | [3D printed stands for RPlidar A1 and RPi 4](https://www.thingiverse.com/thing:3970110)                                                                                                                                                                                               |
-| 10  | Mount for Raspberry Pi camera                                                                                                                                                                                                                                                         |
-| 11  | Powerbank for RPi 4 (minimum output: 5V 3A)                                                                                                                                                                                                                                           |
-| 12  | Gamepad                                                                                                                                                                                                                                                                               |
-| 13  | 3 Slot 18650 battery holder                                                                                                                                                                                                                                                           |
-| 14  | 3 x 18650 batteries to power Motor Driver HAT                                                                                                                                                                                                                                         |
-| 15  | Female to Female Dupont jumper cables                                                                                                                                                                                                                                                 |
-| 16  | Spare wires                                                                                                                                                                                                                                                                           |
-
-Some other tools or parts used in the project are as follows:
-
-|     | Tool/Part         |
-| --- | ----------------- |
-| 1   | Soldering iron    |
-| 2   | 3D printer        |
-| 3   | Screwdriver set   |
-| 4   | Double-sided tape |
+|     | Part                                                                                                                                 |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | Raspberry Pi 4 (4 GB)                                                                                                                |
+| 2   | Arduino Nano (Type C)                                                                                                                |
+| 3   | [YP100 Metal Robot Tank Car Chassis Kit](https://www.amazon.com/Professional-Raspberry-MicroBit-Caterpillar-Education/dp/B09KKRY84S) |
+| 4   | 2x Encoder DC Motor 12V 333rpm                                                                                                       |
+| 5   | [MPU6050 board](https://nshopvn.com/product/cam-bien-gia-toc-gy-521-6dof-imu-mpu6050/)                                               |
+| 6   | [RPlidar A1](https://hshop.vn/products/cam-bien-laser-radar-lidar-rplidar-a1)                                                        |
+| 7   | Raspberry Pi camera v2.3                                                                                                             |
+| 8   | Mount for Raspberry Pi camera                                                                                                        |
+| 9   | Module Buck DC-DC Vin 9-36V Vout 5V 5A                                                                                               |
+| 10  | Xbox One X                                                                                                                           |
+| 11  | L298N DC Motor Driver                                                                                                                |
+| 12  | Pin Lipo 3s 11.1V 2200 mAH                                                                                                           |
+| 13  | Female to Female Dupont jumper cables                                                                                                |
+| 14  | Breadboard 400 Tie Points                                                                                                            |
 
 ### Project Wiring and Assembly
 
@@ -73,51 +60,34 @@ The MPU6050 board pins were connected to the Raspberry Pi 4 GPIO pins as follows
 | SCL           | 05         | GPIO03   |
 | SDA           | 03         | GPIO02   |
 
-The right and left photo interrupter sensors are connected to GPIO pins as follows:
-
-| Photo interrupter (R) | GPIO.BOARD | GPIO.BCM |
-| --------------------- | ---------- | -------- |
-| OUT                   | 18         | GPIO24   |
-| VCC                   | 5V         | 5V       |
-| GND                   | GND        | GND      |
-
-| Photo interrupter (L) | GPIO.BOARD | GPIO.BCM |
-| --------------------- | ---------- | -------- |
-| OUT                   | 22         | GPIO25   |
-| VCC                   | 5V         | 5V       |
-| GND                   | GND        | GND      |
-
 <p align="center">
   <img title='MPU6050' src=docs/images/mpu6050.jpg width="400">
   <img title='Encoders' src=docs/images/encoders.jpg width="400">
 </p>
 
-The screw terminal blocks on the Motor Driver HAT ([shown below](https://www.waveshare.com/wiki/Motor_Driver_HAT)) are connected to the motor wires and battery holder cables as follows:
+The screw terminal blocks on the L298N DC Motor Driver are connected to the motor wires and Arduino Nano as follows:
 
-| Motor Driver HAT pin | Connected to                |
-| -------------------- | --------------------------- |
-| MA1                  | Red wire (Left motor)       |
-| MA2                  | Black wire (Left motor)     |
-| GND                  | Black wire (battery holder) |
-| VIN                  | Red wire (battery holder)   |
-| MB1                  | Red wire(Right motor)       |
-| MB2                  | Black wire (Right motor)    |
+| Arduino Nano pin   | L298N pin   |
+| ------------------ | ----------- |
+| D5                 | IN4 (R Rev) |
+| D6                 | IN1 (L Rev) |
+| D9                 | IN3 (R Fwd) |
+| D10                | IN2 (L Fwd) |
+| Red wire (R 12V)   | OUT1        |
+| White wire (R GND) | OUT2        |
+| Red wire (L 12V)   | OUT3        |
+| White wire (L GND) | OUT4        |
 
-<p align="center">
-  <img title='Motor Driver HAT' src=docs/images/Motor_Driver_HAT.png width="400">
-</p>
-
-Solder the cables (provided) to the motors. Might need to use spare wires if the provided ones are too short to reach the motor hat. Should the wheel(s) move in the direction opposite of what is expected, exchange the respective motor cables screwed into the terminal blocks.
+| Arduino Nano pin | Connected to Encoder Motor |
+| ---------------- | -------------------------- |
+| D2               | Yellow wire (Left motor A) |
+| D3               | Yellow wire (Left motor B) |
+| A4               | Green wire (Right motor A) |
+| A5               | Green wire (Right motor A) |
+| GND              | 2x Black wire (GND)        |
+| 3.3V             | 2x Blue wire (3.3~5V)      |
 
 Finally, the Raspberry Pi camera is connected to the ribbon slot on the Raspberry Pi 4 and the RPlidar A1 sensor is plugged into one of the RPi 4's USB ports.
-
-<p align='center'>
-  <img title='Top View' src=docs/images/top_view.jpg width="400">
-</p>
-
-<p align="center">
-  <img title='Side View' src=docs/images/side_view.jpg width="400">
-</p>
 
 ## 🔌 Installation
 
@@ -300,7 +270,8 @@ The gamepad configuration for this project is in [`joystick.yaml`](./raspitank_t
 
 | Button/stick | Button/stick axis | Function                                                      |
 | :----------: | :---------------: | ------------------------------------------------------------- |
-|  L1 button   |         4         | Hold this enable button to move robot at normal speed         |
+|  L1 button   |         6         | Hold this enable button to move robot at normal speed         |
+|  R1 button   |         7         | Hold this enable button to move robot at turbo speed          |
 |  Left stick  |         2         | Move stick forward or backward for linear motion of the robot |
 | Right stick  |         1         | Move stick left or right for angular motion of the robot      |
 
@@ -385,24 +356,6 @@ cd ~/robot_ws
 colcon build --symlink-install
 ```
 
-#### Motor Driver HAT
-
-Waveshare's Motor Driver HAT was used to control the motors of raspitank. The relevant files found in the [`include`](./raspitank_base/include/raspitank_base/) and [`src`](./raspitank_base/src/) directories of the [`raspitank_base`](./raspitank_base/) package. These files were modified, from those made [available by Waveshare](https://www.waveshare.com/wiki/Motor_Driver_HAT) with new ones added as well, to find a workaround to determining the motor direction of rotation --- this is a relatively straightforward task if the motors used here had hall effect encoders affixed to them.
-
-The library dependencies for using the Motor Driver HAT were met after installing the MPU6050 library.
-
-TODO:
-
-brief on how hall effect sensor work
-
-Pulse counts
-
-Link with diff_drive_controller
-
-Pull up resistor with relevant links
-
-Code structure
-
 #### Raspberry Pi Camera
 
 The following packages are installed to use the Raspberry Pi Camera v1.3:
@@ -417,16 +370,6 @@ Support for the RPi camera v1.3 will need to be enabled by navigating the menu o
 sudo raspi-config
 ```
 
-<p align='center'>
-  <img src=docs/images/raspi_config_1.png width="400">
-  <img src=docs/images/raspi_config_2.png width="400">
-</p>
-
-<p align='center'>
-  <img src=docs/images/raspi_config_3.png width="400">
-  <img src=docs/images/raspi_config_4.png width="400">
-</p>
-
 Confirm the RPi camera is connected by running this command:
 
 ```
@@ -437,6 +380,18 @@ This should output the following result:
 
 ```
 supported=1 detected=1, libcamera interfaces=0
+```
+
+Run the following command on raspitank to brings up the camera:
+
+```
+ros2 launch raspitank_bringup camera_launch.py
+```
+
+And then on PC, run this command to check camera:
+
+```
+ros2 run rqt_image_view rqt_image_view
 ```
 
 #### MPU6050 offsets
@@ -548,53 +503,6 @@ Best practices might not have been employed in establishing communication betwee
 
 ### raspitank
 
-### Motor Connection Checks
-
-A [ROS service](https://foxglove.dev/blog/creating-ros2-services) was written to test the connections of the motor(s) and by extension to know if the motor is faulty. Before running the tests, ensure that the 18650 batteries are charged, then prop the robot on a box or similar to prevent it falling off an edge for instance.
-
-Run the [client node](./raspitank_base/src/motor_checks_client.cpp) to request the motor checks:
-
-```
-ros2 run raspitank_base motor_checks_client
-```
-
-Then run the [server node](./raspitank_base/src/motor_checks_server.cpp) to check the motors:
-
-```
-ros2 run raspitank_base motor_checks_server
-```
-
-These are the steps followed by the server node:
-
-- The server initializes the left and right motor pulse counts to 0.
-- It then runs each motor in the forward direction at 50% speed for 2 seconds. The terminal output is shown below:
-  ```
-  [INFO] [1699988646.067449176] [rclcpp]: Ready to check motors
-  [INFO] [1699988648.190017279] [rclcpp]: Received request to check motors...
-  [INFO] [1699988648.190117076] [rclcpp]: Checking left motor...
-  [INFO] [1699988652.196330587] [rclcpp]: Checking right motor...
-  [INFO] [1699988656.202619229] [rclcpp]: Sending back response...
-  ```
-- The current pulse counts for each motor are checked to confirm that the pulse is above 0.
-- If both motors have their pulse counts above 0, a success message is sent to the client:
-
-  ```
-  [INFO] [1699991078.643028687] [rclcpp]: service not available, waiting again...
-  [INFO] [1699991087.233641544] [rclcpp]: The checks were successful!
-  ```
-
-- If one or both of the motors do not have pulse counts above zero a warning message is sent from the server to the client and identifies the faulty motor(s). At the moment, however, the message sent to the client does not identify the faulty motor but instead outputs this message when there is an error:
-
-  ```
-  terminate called after throwing an instance of 'std::future_error'
-    what():  std::future_error: No associated state
-  [ros2run]: Aborted
-  ```
-
-  This section will be updated once the issue has been fixed.
-
-If a motor moves backward instead of forward, swap the cables for the specific motor to change the direction.
-
 After it is confirmed that both motors moved forward, raspitank can be driven around with the gamepad (with the joystick and button configuration presented [here](#teleoperation)) by running this command:
 
 ```
@@ -666,7 +574,7 @@ The saved map can be found in the workspace directory and will be used by [Nav2 
 
 ### raspitank
 
-Run the following command on raspitank to brings up the camera, lidar and joystick:
+Run the following command on raspitank to brings up lidar and joystick:
 
 ```
 ros2 launch raspitank_bringup raspitank_bringup_launch.py

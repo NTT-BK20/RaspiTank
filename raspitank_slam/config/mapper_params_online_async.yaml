@@ -14,7 +14,7 @@ slam_toolbox:
     base_frame: base_footprint
     scan_topic: /scan
     use_map_saver: true
-    mode: mapping #mapping ,localization
+    mode: localization #mapping ,localization
 
     # if you'd like to immediately start continuing a map at a given pose
     # or at the dock, but they are mutually exclusive, if pose is given
@@ -22,9 +22,9 @@ slam_toolbox:
     # map_file_name: /home/rasp/raspitank_ws/src/raspitank_navigation/maps/library_serial
     #map_file_name: /home/rasp/raspitank_ws/src/raspitank_navigation/maps/real_map
     #map_file_name: /home/rasp/raspitank_ws/src/raspitank_navigation/maps/sim_map
-    #map_file_name: /home/rasp/raspitank_ws/src/raspitank_navigation/maps/house
-    #map_start_pose: [0.0, 0.0, 0.0]
-    #map_start_at_dock: true
+    map_file_name: /home/rasp/raspitank_ws/src/raspitank_navigation/maps/phongtuhoc
+    map_start_pose: [0.0, 0.0, 0.0]
+    map_start_at_dock: true
 
     debug_logging: false
     throttle_scans: 1
