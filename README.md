@@ -1,9 +1,7 @@
 # raspitank
 
-![ROS2 CI](https://github.com/NTT-BK20/RaspiTank/actions/workflows/.github/workflows/raspitank_ci_action.yml/badge.svg)
-
 <p align='center'>
-    <img src=img/raspitank.img width="600">
+    <img src=img/raspitank.jpg width="600">
 </p>
 
 A differential drive robot is controlled using ROS2 Humble running on a Raspberry Pi 4 (running Ubuntu server 22.04). The vehicle is equipped with a Raspberry Pi camera for visual feedback and an RPlidar A1 sensor used for Simultaneous Localization and Mapping (SLAM), autonomous navigation and obstacle avoidance. Additionally, an MPU6050 inertial measurement unit (IMU) is employed by the `robot_localization` package on the robot, to fuse IMU sensor data and the wheel encoders data, using an Extended Kalman Filter (EKF) node, to provide more accurate robot odometry estimates.
