@@ -676,6 +676,7 @@ Table of contents
 
 ## Acknowledgment
 
+- [Lidarbot](https://github.com/TheNoobInventor/lidarbot)
 - [Articulated Robotics](https://articulatedrobotics.xyz/)
 - [Automatic Addison](https://automaticaddison.com/)
 - [Diffbot](https://github.com/ros-mobile-robots/diffbot)
