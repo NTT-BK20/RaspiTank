@@ -76,6 +76,9 @@ The screw terminal blocks on the L298N DC Motor Driver are connected to the moto
 
 Finally, the Raspberry Pi camera is connected to the ribbon slot on the Raspberry Pi 4 and the RPlidar A1 sensor is plugged into one of the RPi 4's USB ports.
 
+### Gazebo Simulation
+Youtube: [Link](https://youtu.be/c58yLrJIEjk)
+
 🚧	***(Work in Progress)*** 
 
 ## Acknowledgment
